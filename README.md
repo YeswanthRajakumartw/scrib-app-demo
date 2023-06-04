@@ -1,10 +1,10 @@
-# scrib-app-demo
+# scribe-app-demo
 
-How to Setup
+How to set up
 
 Install Python 3.9.6 or above
 
-From the folder scrib_app run 
+From the folder scribe_app run 
 
 ```shell
 pip3 -r requirements.txt

@@ -35,12 +35,15 @@
         <a href="{% url 'create_exam' %}" class="btn btn-primary mb-3">Create Event</a>
         <a href="" class="btn btn-outline-info mb-3">Create Bulk Events</a>
     {% endif %}
+
     <table class="table table-bordered">
         <thead>
         <tr>
             <th>Name</th>
             <th>Date</th>
             <th>Tickets Available</th>
+            <th></th>
+
         </tr>
         </thead>
         <tbody>
@@ -49,6 +52,10 @@
                 <td>{{ exam.name }}</td>
                 <td>{{ exam.date }}</td>
                 <td>{{ exam.tickets_available }}</td>
+            <td>  {% if is_challenged_user %}
+                <a href="{% url 'scribe-list' exam.id %}" class="btn btn-outline-primary mb-3">view scribes</a>
+                {% endif %}</td>
+
             </tr>
         {% endfor %}
         </tbody>
