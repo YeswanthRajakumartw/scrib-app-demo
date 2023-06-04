@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 from accounts.models import User
 from .forms import ExamForm
-from .models import Exam
+from .models import Exam, Bookings
 
 
 # Create your views here.
@@ -40,6 +40,13 @@ def list_scrib(request, exam_id):
 
 
 def book_scribe(request, exam_id, volunteer_id):
-    volunteer = User.objects.get(id=volunteer_id)
-    message = f"<h2>Your Event has been booked with {volunteer.username} </h2>"
+    exam_volunteer = User.objects.get(id=volunteer_id)
+    exam_attendee = User.objects.get(id=request.user.id)
+    exam_event = Exam.objects.get(id=exam_id)
+    bookings = Bookings()
+    bookings.exam = exam_event
+    bookings.volunteer = exam_volunteer
+    bookings.exam_attendee = exam_attendee
+    bookings.save()
+    message = f"<h2>Your Event has been booked with {exam_volunteer.username} </h2>"
     return HttpResponse(message)
